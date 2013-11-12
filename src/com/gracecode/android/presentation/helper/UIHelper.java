@@ -16,6 +16,4 @@ public class UIHelper {
     public static void showLongToast(Context context, String message) {
         showToast(context, message, Toast.LENGTH_LONG);
     }
-
-
 }

@@ -2,6 +2,8 @@ package com.gracecode.android.presentation.ui.fragment;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.os.Handler;
+import android.os.Message;
 import android.webkit.WebSettings;
 import android.webkit.WebViewFragment;
 import com.gracecode.android.presentation.Huaban;
@@ -16,19 +18,42 @@ import com.gracecode.android.presentation.util.PstManager;
 import java.io.IOException;
 
 public class PstDetailFragment extends WebViewFragment {
+    private static final int SHOW_DISPLAY_ERROR = 0x001;
+    private static final int SHOW_PRESENTATION = 0x002;
     private static final String TEMPLATE_FILENAME = "detail.html";
+
     private final Pin mPin;
     private final Context mContext;
     private final PstManager mPresentationsManager;
     private final Huaban mHuabanApp;
     private final String mPresentationUrl;
 
+    Handler mUIHandler = new Handler() {
+
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case SHOW_DISPLAY_ERROR:
+                    showDisplayError();
+                    String message = (String) msg.obj;
+                    if (message != null && message.length() > 0) {
+                        UIHelper.showLongToast(mContext, message);
+                    }
+                    break;
+
+                case SHOW_PRESENTATION:
+                    showPresentation();
+                    break;
+            }
+            super.handleMessage(msg);
+        }
+    };
+
     private class DownloadListener implements DownloadPstTask.DownloadListener {
         private final ProgressDialog mDialog;
 
         DownloadListener() {
             mDialog = new ProgressDialog(mContext);
-//            mDialog.setTitle(getString(R.string.app_name));
             mDialog.setMessage(getString(R.string.stand_by));
             mDialog.setCancelable(false);
         }
@@ -46,17 +71,19 @@ public class PstDetailFragment extends WebViewFragment {
         @Override
         public void onError(Exception e) {
             mDialog.dismiss();
-            showDisplayError();
-            UIHelper.showLongToast(mContext, e.getMessage());
+            Message message = new Message();
+            message.what = SHOW_DISPLAY_ERROR;
+            message.obj = e.getMessage();
+            mUIHandler.sendMessage(message);
         }
 
         @Override
         public void onFinished() {
             mDialog.dismiss();
             if (mPresentationsManager.isDownloaded(mPresentationUrl)) {
-                showPresentation();
+                mUIHandler.sendEmptyMessage(SHOW_PRESENTATION);
             } else {
-                showDisplayError();
+                mUIHandler.sendEmptyMessage(SHOW_DISPLAY_ERROR);
             }
         }
     }
