@@ -11,6 +11,7 @@
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
 
     <application
             android:theme="@style/Theme.Huaban"
@@ -39,5 +40,9 @@
                 <action android:name="android.intent.action.MAIN"/>
             </intent-filter>
         </activity>
+
+        <meta-data
+                android:name="TD_APP_ID"
+                android:value="5EAD770D0D7B9DBE2DF11EDF3DEB4107"/>
     </application>
 </manifest>

@@ -12,6 +12,7 @@ import com.gracecode.android.presentation.helper.*;
 import com.gracecode.android.presentation.ui.fragment.PstDetailFragment;
 import com.gracecode.android.presentation.util.Logger;
 import com.gracecode.android.presentation.util.PstManager;
+import com.tendcloud.tenddata.TCAgent;
 
 import java.io.File;
 import java.io.IOException;
@@ -96,5 +97,8 @@ public class DetailActivity extends BaseActivity {
     @Override
     protected void onStart() {
         super.onStart();
+        if (mPin.getText().length() > 0) {
+            TCAgent.onEvent(DetailActivity.this, "Pin Title", mPin.getText());
+        }
     }
 }

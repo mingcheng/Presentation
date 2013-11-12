@@ -7,6 +7,7 @@ import android.view.MenuItem;
 import com.gracecode.android.presentation.Huaban;
 import com.gracecode.android.presentation.R;
 import com.gracecode.android.presentation.helper.IntentHelper;
+import com.tendcloud.tenddata.TCAgent;
 
 class BaseActivity extends Activity {
     protected Huaban mHuabanApp;
@@ -41,17 +42,16 @@ class BaseActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    protected void onStop() {
-        super.onStop();
-//        mHuabanApp.getRequestQueue().stop();
-    }
-
 
     @Override
-    protected void onStart() {
-        super.onStart();
-//        mHuabanApp.getRequestQueue().start();
+    protected void onResume() {
+        super.onResume();
+        TCAgent.onResume(this);
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        TCAgent.onPause(this);
+    }
 }
