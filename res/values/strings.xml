@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Presentation</string>
+    <string name="about">About</string>
+    <string name="cache">Cache</string>
+    <string name="only_wifi_download">Wifi Only</string>
+    <string name="only_wifi_download_summary">Download images when Wifi is connected.</string>
+    <string name="enable_cache">Enable Offline Images</string>
+    <string name="enable_cache_summary">Cache images for offline use.</string>
+    <string name="about_summary" formatted="false">Version %s(%s).</string>
+    <string name="donate">Donate</string>
+    <string name="donate_summary">(っ`･ω･´)っ I need money for Nexus5, Please help me.</string>
+    <string name="feedback">Feedback</string>
+    <string name="feedback_summary">Any comments or suggestions? Tell me.</string>
+    <string name="feedback_title" formatted="false">Feedback for \'%s\' %s</string>
+    <string name="view_at_online">View Online</string>
+    <string name="auto_download">Auto Download</string>
+    <string name="auto_download_summary">Auto downloading the big presentations.</string>
+    <string name="clear_cache">Clear Cache</string>
+    <string name="clear_cache_summary" formatted="false">Current disk cache size is %.2fmb.</string>
+    <string name="confirm_without_wifi_download">Confirm download images without Wifi?</string>
+    <string name="confirm_clear_cache">Comfirm clear cache?</string>
+    <string name="cache_is_empty">Cache is empty.</string>
+    <string name="url_donate" formated="false">http://t.cn/zRTdGks</string>
+    <string name="email">lucky@gracecode.com</string>
+    <string name="send_email_faild">Send email failed, may be email client not installed?</string>
+    <string name="Preference">Preference</string>
+    <string name="Save">Save</string>
+    <string name="Share">Share</string>
+    <string name="retina_image">Retina Image</string>
+    <string name="retina_image_summary">Download retina image from service.</string>
+    <string name="havent_downloaded">This image haven\'t downloaded.</string>
+    <string name="copy_error">There is have an error while copy images, maybe storage is full?</string>
+    <string name="copy_finished">Saved to %s</string>
+    <string name="stand_by">Please wait for a while.</string>
+    <string name="no_newer">No newer presentations.</string>
+    <string name="get_new_records">Get %d new presentations.</string>
+</resources>

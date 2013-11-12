@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="white">#ffffff</color>
+    <color name="black">#575757</color>
+    <color name="pomegranate">#cc3333</color>
+    <color name="alizarin">#E0352F</color>
+    <color name="clouds">#fafafa</color>
+    <color name="silver">#B0B6BB</color>
+    <color name="wet_asphalt">#28384B</color>
+    <color name="midnight_blue">#222F3F</color>
+    <color name="concrete">#839494</color>
+    <color name="asbestos">#6B797A</color>
+</resources>

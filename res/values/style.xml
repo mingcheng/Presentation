@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.Huaban"
+           parent="@android:style/Theme.Holo">
+        <item name="android:actionBarStyle">@style/Theme.Huaban.ActionBar</item>
+        <item name="android:colorPressedHighlight">@color/alizarin</item>
+        <item name="android:preferenceScreenStyle">@style/Theme.Huaban.PreferenceScreen</item>
+    </style>
+
+    <style name="Theme.Huaban.ActionBar" parent="@android:style/Widget.Holo.ActionBar">
+        <item name="android:background">@drawable/background_actionbar</item>
+        <item name="android:titleTextStyle">@style/Theme.Huaban.ActionBar.TitleTextStyle</item>
+    </style>
+
+    <style name="Theme.Huaban.ActionBar.TitleTextStyle"
+           parent="@android:style/TextAppearance.Holo.Widget.ActionBar.Title">
+        <item name="android:textColor">@color/clouds</item>
+    </style>
+
+    <style name="Theme.Huaban.PreferenceScreen">
+        <item name="android:padding">0dip</item>
+        <item name="android:background">@color/clouds</item>
+    </style>
+</resources>

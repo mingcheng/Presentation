@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.handmark.pulltorefresh.library.PullToRefreshGridView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:padding="-2dip"
+        android:background="@color/black"
+        android:id="@+id/pins"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:horizontalSpacing="1dip"
+        android:verticalSpacing="1dip"
+        android:numColumns="2"
+        android:scrollbars="vertical"
+        />
+
+
