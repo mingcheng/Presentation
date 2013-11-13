@@ -28,6 +28,7 @@ public class Huaban extends Application {
     public static final String URL_HUABAN = "http://huaban.com/";
     public static final String USER_AGENT = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_0) " +
             " AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.69 Safari/537.36";
+
     public static final long PAGE_SIZE = 25;
     public static final int APP_VERSION = 1;
     public static final String DATABASE_NAME = "pin.sqlite";
