@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # 「花瓣数据图」Android 客户端
 
 读图时代，从「花瓣」（huaban.com）上阅读每日更新的数据图。
@@ -34,12 +33,6 @@
 ## 联系
 
 * Twitter: @feelinglucky
-* Email: lucky[at]gracecode.com
-* Blog: www.gracecode.com
+* Email: `lucky[at]gracecode.com`
+* Blog: http://www.gracecode.com/
 
-=======
-Presentation
-============
-
-读图时代，从「花瓣」（huaban.com）上阅读每日更新的数据图
->>>>>>> fcac3199fd67d4b655f594be7b6b4c4459f47bf0
