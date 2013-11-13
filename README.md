@@ -2,6 +2,15 @@
 
 读图时代，从「花瓣」（huaban.com）上阅读每日更新的数据图。
 
+
+## 下载
+
+![Screenshots](http://goo.gl/d45te8)
+
+Play Market: https://play.google.com/store/apps/details?id=com.gracecode.android.presentation
+
+
+
 ## 功能
 
 1. 获取「花瓣」上数据图最新数据
@@ -26,6 +35,19 @@
 
 初始化版本
 
+
+## 感谢
+
+感谢下面使用到的类库，它们帮助我减轻了不少工作量：
+
+* `Volley` https://github.com/mcxiaoke/android-volley
+* `Gson` https://code.google.com/p/google-gson/
+* `Ormlite` http://ormlite.com/
+* `Apache Commons` https://commons.apache.org/
+* `DiskLruCache` https://github.com/JakeWharton/DiskLruCache
+* `TalkingData Analytics` https://analytics.talkingdata.net/
+
+
 ## 免责声明
 
 本应用的数据源来自互联网，不代表应用本身的观点和立场，同时对因此造成的任何因果不承担任何责任。
@@ -36,3 +58,5 @@
 * Email: `lucky[at]gracecode.com`
 * Blog: http://www.gracecode.com/
 
+
+`- EOF -`
