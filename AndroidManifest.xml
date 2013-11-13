@@ -44,5 +44,10 @@
         <meta-data
                 android:name="TD_APP_ID"
                 android:value="5EAD770D0D7B9DBE2DF11EDF3DEB4107"/>
+
+        <meta-data
+                android:name="UMENG_APPKEY"
+                android:value="52823c4456240b5d280246d5"
+                />
     </application>
 </manifest>

@@ -50,7 +50,7 @@
 
         <Preference
                 android:key="KEY_ABOUT"
-                android:title="@string/about"
+                android:title="@string/version"
                 android:summary="@string/about_summary"
                 />
     </PreferenceCategory>

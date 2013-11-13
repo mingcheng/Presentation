@@ -4,7 +4,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import com.gracecode.android.presentation.BuildConfig;
 import com.gracecode.android.presentation.Huaban;
 import com.gracecode.android.presentation.R;
 import com.gracecode.android.presentation.dao.Pin;
@@ -18,6 +17,7 @@ import java.io.File;
 import java.io.IOException;
 
 public class DetailActivity extends BaseActivity {
+    private static final int NONE_PIN = -1;
     private int mCurrentPinId;
     private Pin mPin;
     private DatabaseHelper mDatabaseHelper;
@@ -27,10 +27,12 @@ public class DetailActivity extends BaseActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mCurrentPinId = getIntent().getIntExtra(DatabaseHelper.FIELD_ID, 0);
+        mCurrentPinId = getIntent().getIntExtra(DatabaseHelper.FIELD_ID, NONE_PIN);
 
-        if (mCurrentPinId == 0 && BuildConfig.DEBUG) {
-            mCurrentPinId = 118108399;
+        if (mCurrentPinId == NONE_PIN) {
+            UIHelper.showShortToast(DetailActivity.this, getString(R.string.havent_downloaded));
+            finish();
+            return;
         }
 
         mHuabanApp = Huaban.getInstance();

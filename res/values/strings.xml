@@ -35,4 +35,5 @@
     <string name="stand_by">Please wait for a while.</string>
     <string name="no_newer">No newer presentations.</string>
     <string name="get_new_records">Get %d new presentations.</string>
+    <string name="version">Version</string>
 </resources>

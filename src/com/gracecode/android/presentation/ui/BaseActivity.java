@@ -31,9 +31,9 @@ class BaseActivity extends Activity {
             case R.id.action_feedback:
                 mHuabanApp.sendFeedbackEmail();
                 return true;
-            case R.id.action_about:
-                //...
-                return true;
+//            case R.id.action_about:
+//                //...
+//                return true;
             case android.R.id.home:
                 finish();
                 return true;

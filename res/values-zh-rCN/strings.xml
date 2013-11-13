@@ -9,7 +9,7 @@
     <string name="enable_cache_summary">Cache images for offline use.</string>
     <string name="about_summary" formatted="false">版本 %s(%s).</string>
     <string name="donate">捐助</string>
-    <string name="donate_summary">(っ`･ω･´)っ 作为 Android 码农跪求台 Nexus5，求实现</string>
+    <string name="donate_summary">(っ`･ω･´)っ 作为 Android 码农跪求台 Nexus5</string>
     <string name="feedback">反馈</string>
     <string name="feedback_summary">有任何的意见和建议？告诉我吧</string>
     <string name="feedback_title" formatted="false">针对 \'%s\' %s 的反馈</string>
@@ -33,4 +33,5 @@
     <string name="stand_by">载入中，请您稍候…</string>
     <string name="no_newer">没有更新的数据图了。</string>
     <string name="get_new_records">获取到 %d 张最新的数据图</string>
+    <string name="version">版本</string>
 </resources>
