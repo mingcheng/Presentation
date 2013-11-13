@@ -5,10 +5,9 @@
 
 ## 下载
 
-![Screenshots](http://goo.gl/d45te8)
+![截图](http://files.gracecode.com/2013_11_13/1384333285@320.png)
 
 Play Market: https://play.google.com/store/apps/details?id=com.gracecode.android.presentation
-
 
 
 ## 功能
@@ -46,6 +45,10 @@ Play Market: https://play.google.com/store/apps/details?id=com.gracecode.android
 * `Apache Commons` https://commons.apache.org/
 * `DiskLruCache` https://github.com/JakeWharton/DiskLruCache
 * `TalkingData Analytics` https://analytics.talkingdata.net/
+
+提供功能模块调用示意图
+
+![示意图](http://files.gracecode.com/2013_11_13/1384333163.png)
 
 
 ## 免责声明
