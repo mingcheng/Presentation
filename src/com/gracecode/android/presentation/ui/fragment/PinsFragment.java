@@ -13,7 +13,7 @@ import com.android.volley.VolleyError;
 import com.gracecode.android.presentation.R;
 import com.gracecode.android.presentation.adapter.PinsAdapter;
 import com.gracecode.android.presentation.listener.PinsAdapterListener;
-import com.gracecode.android.presentation.util.Logger;
+import com.gracecode.android.common.Logger;
 import com.handmark.pulltorefresh.library.PullToRefreshGridView;
 
 public class PinsFragment extends Fragment {

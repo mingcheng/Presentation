@@ -22,7 +22,7 @@ import com.gracecode.android.presentation.listener.PinsAdapterListener;
 import com.gracecode.android.presentation.listener.PstRequestListener;
 import com.gracecode.android.presentation.request.PstRequest;
 import com.gracecode.android.presentation.ui.DetailActivity;
-import com.gracecode.android.presentation.util.Logger;
+import com.gracecode.android.common.Logger;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 
 import java.sql.SQLException;

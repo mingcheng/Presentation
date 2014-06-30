@@ -12,12 +12,7 @@
             android:title="@string/feedback"/>
 
     <item
-            android:id="@+id/action_donate"
+            android:id="@+id/action_about"
             android:showAsAction="never"
-            android:title="@string/donate"/>
-
-    <!--<item-->
-            <!--android:id="@+id/action_about"-->
-            <!--android:showAsAction="never"-->
-            <!--android:title="@string/about"/>-->
+            android:title="@string/about"/>
 </menu>

@@ -1,8 +1,8 @@
 package com.gracecode.android.presentation.task;
 
 import android.os.AsyncTask;
+import com.gracecode.android.common.helper.FileHelper;
 import com.gracecode.android.presentation.Huaban;
-import com.gracecode.android.presentation.helper.FileHelper;
 import com.gracecode.android.presentation.util.PstManager;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -13,7 +13,7 @@ import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.params.HttpParams;
 import org.apache.http.params.HttpProtocolParams;
 
-import java.io.File;
+import java.io.*;
 
 public class DownloadPstTask extends AsyncTask<String, Integer, Integer> {
     private final PstManager mManager;
@@ -69,16 +69,25 @@ public class DownloadPstTask extends AsyncTask<String, Integer, Integer> {
                 int statusCode = httpResponse.getStatusLine().getStatusCode();
                 if (statusCode == HttpStatus.SC_OK) {
                     entity = httpResponse.getEntity();
-                    if (FileHelper.putFileContent(cacheFile, entity.getContent())) {
-                        downloaded++;
-                    }
+//
+//                    InputStream input = httpResponse.getEntity().getContent();
+//                    OutputStream output = new FileOutputStream(cacheFile);
+//                    int read = 0;
+//
+//                    byte[] bytes = new byte[1024];
+//                    while ((read = input.read(bytes)) != -1) {
+//                        output.write(bytes, 0, read);
+//                    }
+//                    output.close();
 
+                    FileHelper.putFileContent(cacheFile, entity.getContent());
+                    downloaded++;
                 } else {
                     getRequest.abort();
                     cacheFile.delete();
                     mListener.onError(new RuntimeException());
                 }
-            } catch (Exception e) {
+            } catch (IOException e) {
                 mListener.onError(e);
             }
         }
@@ -91,7 +100,7 @@ public class DownloadPstTask extends AsyncTask<String, Integer, Integer> {
     protected void onProgressUpdate(Integer... values) {
 //        for (Integer value : values) {
 //            mNotificationCompat
-//                    //.setTicker(value + "/" + urls.size())
+//                    .setTicker(value + "/" + urls.size())
 //                    .setProgress(urls.size(), value, false);
 //            mNotificationManager.notify(DOWNLOAD_NOTIFY_ID, mNotificationCompat.build());
 //        }

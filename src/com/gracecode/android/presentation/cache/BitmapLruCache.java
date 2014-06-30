@@ -1,19 +1,20 @@
 package com.gracecode.android.presentation.cache;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.Build;
 import android.util.LruCache;
 import com.android.volley.toolbox.ImageLoader;
+import com.gracecode.android.common.Logger;
+import com.gracecode.android.common.helper.EnvironmentHelper;
+import com.gracecode.android.common.helper.NetworkHelper;
+import com.gracecode.android.common.helper.StringHelper;
 import com.gracecode.android.presentation.Huaban;
-import com.gracecode.android.presentation.helper.EnvironmentHelper;
-import com.gracecode.android.presentation.helper.NetworkHelper;
-import com.gracecode.android.presentation.helper.StringHashHelper;
-import com.gracecode.android.presentation.util.Logger;
 
 import java.io.IOException;
 import java.io.InputStream;
-
 
 public class BitmapLruCache implements ImageLoader.ImageCache {
     private final Context mContext;
@@ -22,10 +23,10 @@ public class BitmapLruCache implements ImageLoader.ImageCache {
     private static BitmapDiskLruCache mDiskLruCache;
     private LruCache<String, Bitmap> mLruCache;
 
-
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR1)
     public BitmapLruCache(Context context) {
         mContext = context;
-        mLruCache = new LruCache<>(EnvironmentHelper.getMemoryCacheSize());
+        mLruCache = new LruCache<>((int) EnvironmentHelper.getMemoryCacheSize());
         mHuabanApp = Huaban.getInstance();
 
         try {
@@ -50,7 +51,7 @@ public class BitmapLruCache implements ImageLoader.ImageCache {
 
     @Override
     public Bitmap getBitmap(String url) {
-        String key = com.gracecode.android.presentation.helper.StringHashHelper.md5(url);
+        String key = StringHelper.md5(url);
         Bitmap data = mLruCache.get(key);
         if (data == null) {
             try {
@@ -77,7 +78,7 @@ public class BitmapLruCache implements ImageLoader.ImageCache {
 
     @Override
     public void putBitmap(String url, Bitmap bitmap) {
-        String key = StringHashHelper.md5(url);
+        String key = StringHelper.md5(url);
         mLruCache.put(key, bitmap);
 
         if (mDiskLruCache.isContains(key)) {
