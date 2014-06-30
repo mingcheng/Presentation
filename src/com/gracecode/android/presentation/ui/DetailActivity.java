@@ -4,14 +4,17 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import com.gracecode.android.common.Logger;
+import com.gracecode.android.common.helper.EnvironmentHelper;
+import com.gracecode.android.common.helper.FileHelper;
+import com.gracecode.android.common.helper.IntentHelper;
+import com.gracecode.android.common.helper.UIHelper;
 import com.gracecode.android.presentation.Huaban;
 import com.gracecode.android.presentation.R;
 import com.gracecode.android.presentation.dao.Pin;
-import com.gracecode.android.presentation.helper.*;
+import com.gracecode.android.presentation.helper.DatabaseHelper;
 import com.gracecode.android.presentation.ui.fragment.PstDetailFragment;
-import com.gracecode.android.presentation.util.Logger;
 import com.gracecode.android.presentation.util.PstManager;
-import com.tendcloud.tenddata.TCAgent;
 
 import java.io.File;
 import java.io.IOException;
@@ -87,20 +90,10 @@ public class DetailActivity extends BaseActivity {
         return super.onOptionsItemSelected(item);
     }
 
-
     private File copy2PictureDirectory(String url) throws IOException {
-        File save = new File(EnvironmentHelper.getPictureDirectory(), FileHelper.getSavedFileName(mPin));
-        Logger.i(save.getAbsolutePath());
+        File save = new File(EnvironmentHelper.getPictureDirectory(),
+                mPresentationsManager.getSavedFileName(mPin));
         FileHelper.copyFile(mPresentationsManager.getDownloadFile(url), save);
         return save;
-    }
-
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        if (mPin.getText().length() > 0) {
-            TCAgent.onEvent(DetailActivity.this, "Pin Title", mPin.getText());
-        }
     }
 }

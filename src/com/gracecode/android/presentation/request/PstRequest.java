@@ -6,11 +6,12 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.gracecode.android.common.Logger;
+import com.gracecode.android.common.helper.StringHelper;
 import com.gracecode.android.presentation.Huaban;
 import com.gracecode.android.presentation.dao.Pin;
 import com.gracecode.android.presentation.helper.DatabaseHelper;
 import com.gracecode.android.presentation.listener.PstRequestListener;
-import com.gracecode.android.presentation.util.Logger;
 import com.j256.ormlite.dao.Dao;
 
 import java.sql.SQLException;
@@ -37,14 +38,22 @@ public class PstRequest extends StringRequest {
 
     @Override
     protected Response<String> parseNetworkResponse(NetworkResponse response) {
-        Response<String> stringResponse = super.parseNetworkResponse(response);
-        getPinsFromResponse(stringResponse.result);
-        return stringResponse;
+        String result = "";
+        String encoding = response.headers.get("Content-Encoding");
+        if (encoding != null && encoding.equals("gzip")) {
+            result = StringHelper.unzip(response.data);
+        } else {
+            Response<String> stringResponse = super.parseNetworkResponse(response);
+            result = stringResponse.result;
+        }
+        getPinsFromResponse(result);
+
+        return super.parseNetworkResponse(response);
     }
 
     @Override
-    public void setRetryPolicy(RetryPolicy retryPolicy) {
-        super.setRetryPolicy(new DefaultRetryPolicy(
+    public Request<?> setRetryPolicy(RetryPolicy retryPolicy) {
+        return super.setRetryPolicy(new DefaultRetryPolicy(
                 Huaban.TIMEOUT,
                 DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
@@ -99,10 +108,13 @@ public class PstRequest extends StringRequest {
 
     @Override
     public Map<String, String> getHeaders() throws AuthFailureError {
-        Map<String, String> params = new HashMap<String, String>();
+        Map<String, String> params = new HashMap<>();
+        params.put("X-Request", "JSON");
         params.put("X-Requested-With", "XMLHttpRequest");
         params.put("Accept-Encoding", "gzip,deflate");
         params.put("Cache-Control", "no-cache");
+        params.put("Pragma", "no-cache");
+        params.put("Accept", "application/json");
         params.put("Referer", Huaban.URL_HUABAN);
         params.put("User-Agent", Huaban.USER_AGENT);
         return params;

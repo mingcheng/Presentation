@@ -1,6 +1,5 @@
 package com.gracecode.android.presentation;
 
-import android.app.Application;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -9,14 +8,12 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
+import com.gracecode.android.common.CustomApplication;
 import com.gracecode.android.presentation.cache.BitmapLruCache;
 import com.gracecode.android.presentation.helper.DatabaseHelper;
-import com.gracecode.android.presentation.helper.IntentHelper;
-import com.gracecode.android.presentation.helper.UIHelper;
-import com.gracecode.android.presentation.util.Logger;
 import com.gracecode.android.presentation.util.PstManager;
 
-public class Huaban extends Application {
+public class Huaban extends CustomApplication {
     public static final String KEY_CLEAR_CACHE = "KEY_CLEAR_CACHE";
     public static final String KEY_ABOUT = "KEY_ABOUT";
     public static final String KEY_DONATE = "KEY_DONATE";
@@ -31,7 +28,7 @@ public class Huaban extends Application {
 
     public static final long PAGE_SIZE = 25;
     public static final int APP_VERSION = 1;
-    public static final String DATABASE_NAME = "pin.sqlite";
+    public static final String DATABASE_NAME = "pins.sqlite";
     public static final int TIMEOUT = 5000;
 
     private static Huaban mInstance;
@@ -52,8 +49,8 @@ public class Huaban extends Application {
 
         mGson = new Gson();
         mRequestQueue = Volley.newRequestQueue(getApplicationContext());
-
         mImageLoader = new ImageLoader(mRequestQueue, new BitmapLruCache(getApplicationContext()));
+
         mDatabaseHelper = new DatabaseHelper(getApplicationContext());
         mPresentationsManager = new PstManager(getApplicationContext());
     }
@@ -102,18 +99,6 @@ public class Huaban extends Application {
 
     public boolean isOnlyWifiDownload() {
         return getSharedPreferences().getBoolean(Huaban.KEY_ONLY_WIFI_DOWNLOAD, true);
-    }
-
-    public void sendFeedbackEmail() {
-        String subject = String.format(
-                getString(R.string.feedback_title), getString(R.string.app_name), getPackageInfo().versionName);
-
-        try {
-            IntentHelper.sendMail(Huaban.this, getString(R.string.email), subject, "");
-        } catch (RuntimeException e) {
-            Logger.e(e.getMessage());
-            UIHelper.showShortToast(Huaban.this, getString(R.string.send_email_faild));
-        }
     }
 
     public PstManager getPresentationsManager() {

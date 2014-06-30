@@ -3,6 +3,7 @@
 
     <style name="Theme.Huaban"
            parent="@android:style/Theme.Holo">
+        <!--<item name="android:windowActionBarOverlay">true</item>-->
         <item name="android:actionBarStyle">@style/Theme.Huaban.ActionBar</item>
         <item name="android:colorPressedHighlight">@color/alizarin</item>
         <item name="android:preferenceScreenStyle">@style/Theme.Huaban.PreferenceScreen</item>

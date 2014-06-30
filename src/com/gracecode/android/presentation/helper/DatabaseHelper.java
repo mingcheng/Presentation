@@ -4,7 +4,7 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import com.gracecode.android.presentation.Huaban;
 import com.gracecode.android.presentation.dao.Pin;
-import com.gracecode.android.presentation.util.Logger;
+import com.gracecode.android.common.Logger;
 import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.stmt.PreparedQuery;

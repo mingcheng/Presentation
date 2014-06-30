@@ -1,17 +1,20 @@
 package com.gracecode.android.presentation.ui.fragment;
 
+import android.annotation.TargetApi;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
 import android.webkit.WebSettings;
 import android.webkit.WebViewFragment;
+import com.gracecode.android.common.Logger;
+import com.gracecode.android.common.helper.FileHelper;
+import com.gracecode.android.common.helper.NetworkHelper;
+import com.gracecode.android.common.helper.UIHelper;
 import com.gracecode.android.presentation.Huaban;
 import com.gracecode.android.presentation.R;
 import com.gracecode.android.presentation.dao.Pin;
-import com.gracecode.android.presentation.helper.FileHelper;
-import com.gracecode.android.presentation.helper.NetworkHelper;
-import com.gracecode.android.presentation.helper.UIHelper;
 import com.gracecode.android.presentation.task.DownloadPstTask;
 import com.gracecode.android.presentation.util.PstManager;
 
@@ -24,9 +27,9 @@ public class PstDetailFragment extends WebViewFragment {
 
     private final Pin mPin;
     private final Context mContext;
-    private final PstManager mPresentationsManager;
-    private final Huaban mHuabanApp;
-    private final String mPresentationUrl;
+    private PstManager mPresentationsManager;
+    private Huaban mHuabanApp;
+    private String mPresentationUrl;
 
     Handler mUIHandler = new Handler() {
 
@@ -88,13 +91,24 @@ public class PstDetailFragment extends WebViewFragment {
         }
     }
 
+    public PstDetailFragment() {
+        mPin = null;
+        mContext = null;
+        init();
+    }
 
     public PstDetailFragment(Context context, Pin pin) {
         mPin = pin;
         mContext = context;
+        init();
+    }
+
+    private void init() {
         mHuabanApp = Huaban.getInstance();
         mPresentationsManager = mHuabanApp.getPresentationsManager();
-        mPresentationUrl = (mHuabanApp.isDownloadRetinaImage()) ? mPin.getOriginUrl() : mPin.getBigPstUrl();
+        if (mPin != null) {
+            mPresentationUrl = (mHuabanApp.isDownloadRetinaImage()) ? mPin.getOriginUrl() : mPin.getBigPstUrl();
+        }
     }
 
     @Override
@@ -121,6 +135,7 @@ public class PstDetailFragment extends WebViewFragment {
         showPresentation("file://" + mPresentationsManager.getDownloadFileName(mPresentationUrl));
     }
 
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     private void showPresentation(String url) {
         try {
             WebSettings settings = getWebView().getSettings();
@@ -129,7 +144,6 @@ public class PstDetailFragment extends WebViewFragment {
             settings.setAllowFileAccessFromFileURLs(false);
             settings.setUseWideViewPort(true);
             settings.setLoadWithOverviewMode(true);
-            settings.setLightTouchEnabled(true);
 
             getWebView().loadDataWithBaseURL(
                     "file:///android_asset/",
@@ -138,15 +152,15 @@ public class PstDetailFragment extends WebViewFragment {
                     "utf-8",
                     null);
         } catch (RuntimeException e) {
-//            Logger.e(e.getMessage());
+            Logger.e(e.getMessage());
         }
     }
 
     private String getTemplate() {
         try {
-            return FileHelper.getFileContent(mContext.getAssets().open(TEMPLATE_FILENAME));
+            return FileHelper.getFileContent(mContext.getAssets().open(TEMPLATE_FILENAME), "UTF-8");
         } catch (IOException e) {
-            return "%s";
+            return "<img src=\"%s\" />";
         }
     }
 }

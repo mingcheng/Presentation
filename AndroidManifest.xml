@@ -2,11 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.gracecode.android.presentation"
           android:versionCode="20131114"
-          android:versionName="1.0.2">
+          android:versionName="1.1.0">
 
     <uses-sdk
-            android:minSdkVersion="11"
-            android:targetSdkVersion="16"/>
+            android:minSdkVersion="16"
+            android:targetSdkVersion="19"/>
 
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
