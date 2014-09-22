@@ -3,17 +3,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
               android:layout_width="match_parent"
+              android:paddingTop="73dp"
               android:layout_height="match_parent">
 
-    <!--<com.android.volley.toolbox.NetworkImageView-->
-    <!--android:id="@+id/image_detail"-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:background="#ff0000"-->
-    <!--android:scaleType="center"-->
-    <!--/>-->
-
-    <WebView
+    <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/webview"

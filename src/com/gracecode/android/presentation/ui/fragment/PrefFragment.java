@@ -10,9 +10,13 @@ import android.preference.CheckBoxPreference;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceScreen;
+import com.gracecode.android.common.helper.FileHelper;
 import com.gracecode.android.common.helper.IntentHelper;
+import com.gracecode.android.common.helper.UIHelper;
 import com.gracecode.android.presentation.Huaban;
 import com.gracecode.android.presentation.R;
+
+import java.io.IOException;
 
 public class PrefFragment extends PreferenceFragment {
 
@@ -56,13 +60,13 @@ public class PrefFragment extends PreferenceFragment {
         Preference cachePref = findPreference(Huaban.KEY_CLEAR_CACHE);
 
         String template = getString(R.string.clear_cache_summary);
-//        float size = FileHelper.getSizeOfDirectory(mHuabanApp.getCacheDir()) / (1024f * 1024f);
-//
-//        if (size > 0.1f) {
-//            cachePref.setSummary(String.format(template, size));
-//        } else {
-//            cachePref.setSummary(getString(R.string.cache_is_empty));
-//        }
+        float size = FileHelper.getSizeOfDirectory(mHuabanApp.getCacheDir()) / (1024f * 1024f);
+
+        if (size > 0.1f) {
+            cachePref.setSummary(String.format(template, size));
+        } else {
+            cachePref.setSummary(getString(R.string.cache_is_empty));
+        }
     }
 
     @Override
@@ -104,12 +108,12 @@ public class PrefFragment extends PreferenceFragment {
                                 new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
-//                                        try {
-//                                            FileHelper.deleteDirectory(mHuabanApp.getCacheDir());
-//                                            markCacheSize();
-//                                        } catch (IOException e) {
-//                                            UIHelper.showShortToast(mContext, e.getMessage());
-//                                        }
+                                        try {
+                                            FileHelper.deleteDirectory(mHuabanApp.getCacheDir());
+                                            markCacheSize();
+                                        } catch (IOException e) {
+                                            UIHelper.showShortToast(mContext, e.getMessage());
+                                        }
                                     }
                                 })
                         .setNegativeButton(android.R.string.cancel, null)
