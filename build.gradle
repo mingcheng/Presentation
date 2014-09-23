@@ -49,7 +49,7 @@ android {
             // Save password to ~/.gradle/gradle.properties
             storeFile file(System.getProperty("user.home") + MC_ANDROID_STORE_PATH)
             storePassword MC_ANDROID_STORE_PASSWORD
-            keyAlias "RainNoise"
+            keyAlias "presentation"
             keyPassword MC_ANDROID_KEY_PASSWORD
         }
     }

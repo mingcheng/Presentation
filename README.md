@@ -30,6 +30,15 @@ Play Market: https://play.google.com/store/apps/details?id=com.gracecode.android
 
 ## 更新历史
 
+### 2014-09-23
+
+1、修复无法读取花瓣信息的错误
+2、更改在 4.4 下半透明导航条
+3、部分 Bugfix
+
+因为花瓣的内容质量越来越差，这可能是最后一个版本更新了，感谢大家关注
+
+
 ### 2013-11-12
 
 初始化版本
