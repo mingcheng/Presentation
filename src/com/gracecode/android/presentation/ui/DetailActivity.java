@@ -30,10 +30,9 @@ public class DetailActivity extends BaseActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.detail);
+        setContentView(R.layout.activity);
 
         mCurrentPinId = getIntent().getIntExtra(DatabaseHelper.FIELD_ID, NONE_PIN);
-
         if (mCurrentPinId == NONE_PIN) {
             UIHelper.showShortToast(DetailActivity.this, getString(R.string.havent_downloaded));
             finish();
@@ -54,7 +53,7 @@ public class DetailActivity extends BaseActivity {
         getActionBar().setDisplayHomeAsUpEnabled(true);
         getFragmentManager()
                 .beginTransaction()
-                .replace(R.id.webview, new PstDetailFragment(DetailActivity.this, mPin))
+                .replace(R.id.content, new PstDetailFragment(DetailActivity.this, mPin))
                 .commit();
     }
 
@@ -90,14 +89,6 @@ public class DetailActivity extends BaseActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-//            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-//        }
     }
 
     private File copy2PictureDirectory(String url) throws IOException {

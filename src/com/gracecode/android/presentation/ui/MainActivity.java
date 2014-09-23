@@ -9,8 +9,10 @@ public class MainActivity extends BaseActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity);
+
         getFragmentManager().beginTransaction()
-                .replace(android.R.id.content, new PinsFragment(MainActivity.this))
+                .add(R.id.content, new PinsFragment(MainActivity.this))
                 .commit();
     }
 

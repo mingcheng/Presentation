@@ -51,6 +51,12 @@ class BaseActivity extends FragmentActivity {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+
+            try {
+                findViewById(R.id.root).setPadding(0, (int) (UIHelper.getActionBarHeight(this) * 1.5), 0, 0);
+            } catch (RuntimeException e) {
+                e.printStackTrace();
+            }
         }
     }
 
