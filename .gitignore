@@ -27,3 +27,4 @@ gen/
 out/
 /proguard-project.txt
 proguard/
+build/

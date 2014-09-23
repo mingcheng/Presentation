@@ -1,3 +1,6 @@
 [submodule "libs/android-common"]
 	path = libs/android-common
 	url = git@bitbucket.org:feelinglucky/android-common.git
+[submodule "libs/pull2refersh"]
+	path = libs/pull2refersh
+	url = https://github.com/chrisbanes/Android-PullToRefresh

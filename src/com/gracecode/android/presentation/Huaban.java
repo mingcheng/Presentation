@@ -77,6 +77,7 @@ public class Huaban extends CustomApplication {
         mDatabaseHelper.close();
     }
 
+    @Deprecated
     public PackageInfo getPackageInfo() {
         try {
             return getPackageManager().getPackageInfo(getPackageName(), 0);

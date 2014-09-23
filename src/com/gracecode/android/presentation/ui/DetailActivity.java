@@ -30,8 +30,9 @@ public class DetailActivity extends BaseActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mCurrentPinId = getIntent().getIntExtra(DatabaseHelper.FIELD_ID, NONE_PIN);
+        setContentView(R.layout.activity);
 
+        mCurrentPinId = getIntent().getIntExtra(DatabaseHelper.FIELD_ID, NONE_PIN);
         if (mCurrentPinId == NONE_PIN) {
             UIHelper.showShortToast(DetailActivity.this, getString(R.string.havent_downloaded));
             finish();
@@ -52,7 +53,7 @@ public class DetailActivity extends BaseActivity {
         getActionBar().setDisplayHomeAsUpEnabled(true);
         getFragmentManager()
                 .beginTransaction()
-                .replace(android.R.id.content, new PstDetailFragment(DetailActivity.this, mPin))
+                .replace(R.id.content, new PstDetailFragment(DetailActivity.this, mPin))
                 .commit();
     }
 
