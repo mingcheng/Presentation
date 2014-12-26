@@ -1,2 +1,2 @@
-include ':libs:android-common', ':libs:pull2refersh:library' 
+include ':libs:common'
 

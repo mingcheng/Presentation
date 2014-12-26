@@ -126,7 +126,7 @@ public class PrefFragment extends PreferenceFragment {
                 return true;
 
             case Huaban.KEY_FEEDBACK:
-                mHuabanApp.sendFeedbackEmail(getActivity(),
+                mHuabanApp.sendEmail(getActivity(),
                         getString(R.string.feedback_subject, getString(R.string.app_name), packageInfo.versionName));
                 return true;
 

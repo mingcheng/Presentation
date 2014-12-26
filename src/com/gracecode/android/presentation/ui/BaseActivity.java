@@ -30,7 +30,7 @@ class BaseActivity extends FragmentActivity {
                 startActivity(new Intent(BaseActivity.this, PrefActivity.class));
                 return true;
             case R.id.action_feedback:
-                mHuabanApp.sendFeedbackEmail(this,
+                mHuabanApp.sendEmail(this,
                         getString(R.string.feedback_subject, getString(R.string.app_name), packageInfo.versionName));
                 return true;
             case R.id.action_about:
