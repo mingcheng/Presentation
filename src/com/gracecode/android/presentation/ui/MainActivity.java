@@ -12,7 +12,7 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.activity);
 
         getFragmentManager().beginTransaction()
-                .add(R.id.content, new PinsFragment(MainActivity.this))
+                .add(R.id.content, new PinsFragment())
                 .commit();
     }
 

@@ -1,16 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.handmark.pulltorefresh.library.PullToRefreshGridView
+<android.support.v4.widget.SwipeRefreshLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
-        android:padding="-2dip"
-        android:background="@color/black"
-        android:id="@+id/pins"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:horizontalSpacing="1dip"
-        android:verticalSpacing="1dip"
-        android:numColumns="2"
-        android:scrollbars="vertical"
-        />
+        android:id="@+id/swipe_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
+    <GridView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:padding="-2dip"
+            android:background="@color/black"
+            android:id="@+id/pins"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:horizontalSpacing="1dip"
+            android:verticalSpacing="1dip"
+            android:numColumns="2"
+            android:scrollbars="vertical"
+            />
+</android.support.v4.widget.SwipeRefreshLayout>
 
 

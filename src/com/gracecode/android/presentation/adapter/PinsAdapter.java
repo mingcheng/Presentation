@@ -4,16 +4,17 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
-import android.widget.GridView;
 import android.widget.TextView;
 import com.android.volley.RequestQueue;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.NetworkImageView;
+import com.gracecode.android.common.Logger;
 import com.gracecode.android.presentation.Huaban;
 import com.gracecode.android.presentation.R;
 import com.gracecode.android.presentation.dao.Pin;
@@ -22,24 +23,27 @@ import com.gracecode.android.presentation.listener.PinsAdapterListener;
 import com.gracecode.android.presentation.listener.PstRequestListener;
 import com.gracecode.android.presentation.request.PstRequest;
 import com.gracecode.android.presentation.ui.DetailActivity;
-import com.gracecode.android.common.Logger;
-import com.handmark.pulltorefresh.library.PullToRefreshBase;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class PinsAdapter extends BaseAdapter
-        implements AdapterView.OnItemClickListener, PullToRefreshBase.OnRefreshListener<GridView> {
+        implements AdapterView.OnItemClickListener, SwipeRefreshLayout.OnRefreshListener {
     private static final int MAX_PINS_NUM = 1024;
     private static final int UPDATE_SET_CHANGED = 0x001;
 
     private final Context mContext;
     private final DatabaseHelper mDatabaseHelper;
     private final PinsAdapterListener mListener;
-    private ArrayList<Pin> mPins = new ArrayList<Pin>();
+    private ArrayList<Pin> mPins = new ArrayList<>();
     private RequestQueue mRequestQueue;
     private boolean isRequesting = false;
     private Huaban mHuabanApp;
+
+    @Override
+    public void onRefresh() {
+        loadNewestPinsFromNetwork();
+    }
 
     private static final class Holder {
         private final NetworkImageView mImageView;
@@ -251,10 +255,5 @@ public class PinsAdapter extends BaseAdapter
         Intent intent = new Intent(mContext, DetailActivity.class);
         intent.putExtra(DatabaseHelper.FIELD_ID, getItem(i).getId());
         mContext.startActivity(intent);
-    }
-
-    @Override
-    public void onRefresh(PullToRefreshBase refreshView) {
-        loadNewestPinsFromNetwork();
     }
 }
