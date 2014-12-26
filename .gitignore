@@ -28,3 +28,5 @@ out/
 /proguard-project.txt
 proguard/
 build/
+/.gradle
+/gradlew*
