@@ -32,6 +32,12 @@ Play Market: https://play.google.com/store/apps/details?id=com.gracecode.android
 
 ## 更新历史
 
+### 2014-12-26
+
+1、改用原生的下拉刷新组件
+2、避免使用本地 jar 包，统一使用 Gradle 构建
+3、修改部分接口名称
+
 ### 2014-09-23
 
 1、修复无法读取花瓣信息的错误
