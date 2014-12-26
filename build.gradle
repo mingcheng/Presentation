@@ -3,20 +3,27 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:0.10.+'
+        classpath 'com.android.tools.build:gradle:1.0.+'
     }
 }
 
-apply plugin: 'android'
+apply plugin: 'com.android.application'
 
 repositories {
+
     mavenCentral()
 }
 
+
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile project(':libs:android-common')
-    compile project(':libs:pull2refersh:library')
+    compile 'com.google.code.gson:gson:2.3.1'
+    compile 'com.j256.ormlite:ormlite-core:4.48'
+    compile 'com.j256.ormlite:ormlite-android:4.48'
+    compile 'eu.the4thfloor.volley:com.android.volley:2014.12.21'
+    compile 'com.android.support:support-v4:21.0.3'
+    compile 'org.apache.directory.studio:org.apache.commons.io:2.4'
+    compile project(':libs:common')
 }
 
 def getDate() {
@@ -26,12 +33,12 @@ def getDate() {
 }
 
 android {
-    compileSdkVersion 19
-    buildToolsVersion '20.0.0'
+    compileSdkVersion 21
+    buildToolsVersion '21.1.1'
 
     defaultConfig {
         targetSdkVersion 19
-        minSdkVersion 16
+        minSdkVersion 14
         versionCode getDate()
     }
 
@@ -61,12 +68,13 @@ android {
 
         release {
             debuggable false
-            jniDebugBuild false
             signingConfig signingConfigs.release
 
+            // https://stackoverflow.com/questions/27114073
             applicationVariants.all { variant ->
-                def file = variant.outputFile
-                variant.outputFile = new File(file.parent, file.name.replace(".apk", "-" + defaultConfig.versionCode + ".apk"))
+                variant.outputs.each { output ->
+                    output.outputFile = new File(output.outputFile.parent, output.outputFile.name.replace(".apk", "-" + defaultConfig.versionName + ".apk"))
+                }
             }
         }
     }
@@ -97,23 +105,23 @@ android {
 }
 
 
-tasks.withType(Compile) {
+tasks.withType(JavaCompile) {
     options.encoding = "UTF-8"
 }
 
 // @from http://blog.csdn.net/look_down/article/details/17557031
 task copyNativeLibs(type: Copy) {
     from fileTree(dir: 'libs', include: 'armeabi/*.so') into 'build/lib'
-    from fileTree(dir: 'libs/libogg/libs', include: [ 'armeabi/*.so', 'armeabi-v7a/*.so', 'mips/*.so', 'x86/*.so' ] ) into 'build/lib'
+    from fileTree(dir: 'libs/libogg/libs', include: ['armeabi/*.so', 'armeabi-v7a/*.so', 'mips/*.so', 'x86/*.so']) into 'build/lib'
 }
 
-tasks.withType(Compile) {
+tasks.withType(JavaCompile) {
     compileTask -> compileTask.dependsOn copyNativeLibs
 }
 
 clean.dependsOn 'cleanCopyNativeLibs'
 
 tasks.withType(com.android.build.gradle.tasks.PackageApplication) { pkgTask ->
-   pkgTask.jniFolders = [new File(buildDir, 'lib')]
+    pkgTask.jniFolders = [new File(buildDir, 'lib')]
 }
 
